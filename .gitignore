@@ -1,0 +1,18 @@
+# =========================
+# ROS 2 colcon build ignores
+# =========================
+build/
+install/
+log/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# ROS2 launch logs
+*.launch.log
+
+# VS Code / IDE config
+.vscode/
+.idea/
