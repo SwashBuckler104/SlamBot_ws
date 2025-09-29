@@ -36,33 +36,37 @@ git clone <your_repo_url>
 cd ..
 colcon build
 source install/setup.bash
+```
 
 ### 2️⃣ Launch Rviz 
 ```bash
 ros2 launch slambot_description display.launch.py
+```
 
 ![SlamBot_Gazebo](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
 
 ### 3️⃣ Launch Gazebo with Robot
 ```bash
 ros2 launch slambot_gazebo gazebo.launch.py
+```
 
 ![SlamBot_Gazebo](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
 
 ### 4️⃣ Run Navigation with Static TF
 ```bash
 ros2 launch slambot_navigation navigation.launch.py
+```
 
 ### 5️⃣ Verify TF Tree
 ```bash
 ros2 run tf2_tools view_frames
-evince frames.pdf
+```
 
-
-### ✅ Expected TF Tree:
+**✅ Expected TF Tree:**
 ```bash
 map → odom → base_link → wheels
                      ↳ lidar_link
+```
 
 ---
 
