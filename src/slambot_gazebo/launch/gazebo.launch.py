@@ -16,11 +16,11 @@ def generate_launch_description():
     world_file_name='empty_world.sdf'
     
     world_path = os.path.join(
-    get_package_share_directory(this_pkg),
-    'worlds',
-    world_file_name)
+        get_package_share_directory(this_pkg),
+        'worlds',
+        world_file_name
+    )
 
-  
     xacro_file = os.path.join(get_package_share_directory(pkg_name), file_subpath)
     robot_description_raw = xacro.process_file(xacro_file).toxml()
 
@@ -30,48 +30,56 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'robot_description': robot_description_raw,
-            'use_sim_time': True, 
+            'use_sim_time': True
         }]
     )
 
+    # Not Sure is Static TF is needed for LIDAR
     static_lidar_tf = Node(
-    package='tf2_ros',
-    executable='static_transform_publisher',
-    name='static_lidar_tf',
-    arguments=['0', '0', '0.175', '0', '0', '0', 'base_link', 'lidar_link'],
-    parameters=[{'use_sim_time': True}],
-    output='screen',
-)
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_lidar_tf',
+        arguments=['0', '0', '0.175', '0', '0', '0', 'base_link', 'lidar_link'],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
  
     gazebo = ExecuteProcess(
-    cmd=['ign', 'gazebo', world_path, '--verbose', '-r'],
-    output='screen')
+        cmd=[
+            'ign', 'gazebo', world_path, 
+            '--verbose', '-r'
+            ],
+        output='screen'
+    )
 
     spawn_entity = Node(
-    package='ros_gz_sim',
-    executable='create',
-    arguments=[
-        '-topic', 'robot_description',
-        '-x', '0', '-y', '0', '-z', '0.335' 
-    ],
-    parameters=[{'use_sim_time': True}],
-    output='screen',)
+        package='ros_gz_sim',
+        executable='create',
+        arguments=[
+            '-topic', 'robot_description',
+            '-x', '0', '-y', '0', '-z', '0.335' 
+        ],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
     
     bridge_params = os.path.join(
-    get_package_share_directory('slambot_gazebo'),
-    'params',
-    'slambot.yaml')
+        get_package_share_directory('slambot_gazebo'),
+        'params',
+        'slambot.yaml'
+    )
 
     start_gazebo_ros_bridge_cmd = Node(
-    package='ros_gz_bridge',
-    executable='parameter_bridge',
-    arguments=[
-        '--ros-args',
-        '-p',
-        f'config_file:={bridge_params}',
-    ],
-    parameters=[{'use_sim_time': True}],
-    output='screen',)
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
     
     return LaunchDescription([
         start_gazebo_ros_bridge_cmd,

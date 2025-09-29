@@ -12,7 +12,8 @@ def generate_launch_description():
     pkg_gazebo = get_package_share_directory('slambot_gazebo')
 
     map_file = os.path.join(pkg_nav, 'maps', 'map.yaml')
-    param_file = os.path.join(pkg_nav, 'params', 'nav2_params.yaml')
+    # param_file = os.path.join(pkg_nav, 'params', 'nav2_params.yaml')
+    param_file = os.path.join(pkg_nav, 'params', 'slambot_nav2.yaml')
     rviz_config = os.path.join(pkg_nav, 'rviz', 'nav2_goalBot.rviz')
 
     use_sim_time = DeclareLaunchArgument(
@@ -32,7 +33,7 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}] 
     )
 
-    # --- STATIC TF: map -> odom ---
+    # --- STATIC TF: map -> odom Not Sure if Needed---
     static_tf_node = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
