@@ -80,3 +80,25 @@ map → odom → base_link → wheels
   - `robot_state_publisher`  
   - `tf2_ros`  
   - `slam_toolbox` (if using mapping)
+
+ ## Current Errros Need 
+**As you can see the rqt graph the nav2 nodes are not getting activated automatically _- reasons can be some node in nav2 created error and everyhting stopped working ::**
+```bash
+# Configure first
+ros2 lifecycle set /bt_navigator configure
+ros2 lifecycle set /planner_server configure      #fails??
+
+# Now activate
+ros2 lifecycle set /bt_navigator activate
+ros2 lifecycle set /planner_server activate
+
+# same for controller server
+ros2 lifecycle get /controller_server
+ros2 lifecycle set /controller_server activate
+
+
+# Manual Testing
+ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {frame_id: 'map'}, pose: {position: {x: 0, y: 0, z: 0}, orientation: {w:1}}}}"
+ros2 topic echo /navigate_to_pose/_action/feedback
+
+```

@@ -13,8 +13,8 @@ def generate_launch_description():
 
     map_file = os.path.join(pkg_nav, 'maps', 'map.yaml')
     # param_file = os.path.join(pkg_nav, 'params', 'nav2_params.yaml')
-    param_file = os.path.join(pkg_nav, 'params', 'slambot_nav2.yaml')
-    rviz_config = os.path.join(pkg_nav, 'rviz', 'nav2_goalBot.rviz')
+    param_file = os.path.join(pkg_nav, 'params', 'nav2_params.yaml')
+    rviz_config = os.path.join(pkg_nav, 'rviz', 'slambot_nav2.rviz')
 
     use_sim_time = DeclareLaunchArgument(
         'use_sim_time', default_value='true', description='Use simulation time'
