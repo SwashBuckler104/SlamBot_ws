@@ -43,29 +43,28 @@ source install/setup.bash
 ros2 launch slambot_description display.launch.py
 ```
 
-![SlamBot_Rviz](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+![SlamBot_Rviz](https://github.com/SwashBuckler104/SlamBot_ws/blob/main/images/Slambot_description.png)
 
 ### 3️⃣ Launch Gazebo with Robot
 ```bash
 ros2 launch slambot_gazebo gazebo.launch.py
 ```
 
-![SlamBot_Gazebo](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+![SlamBot_Gazebo](https://github.com/SwashBuckler104/SlamBot_ws/blob/main/images/Slambot_gazebo.png)
 
 ### 4️⃣ Run Navigation with Static TF
 ```bash
 ros2 launch slambot_navigation navigation.launch.py
 # for storing logs
 ros2 launch slambot_navigation navigation.launch.py >  navlog.log 2>&1
-
-# Once Rviz is launched in local/glocal_costmap use follow the below Steps:
-  # - First use 2D Postion Estimate for Initial position set
-  # - Use 2D Goal Estimate for point to point navigation
-
 ```
-![2D_Pos_Change](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+**Once Rviz is launched in local/global_costmap follow the below Steps**
+  **- First use 2D Pose Estimate for initial position set**
+![SlamBot_Gazebo](https://github.com/SwashBuckler104/SlamBot_ws/blob/main/images/nav2.png)
 
-![2D_Goal](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+  **- Use 2D Goal Pose for point to point navigation(more videos in images folder)**
+[nav2_a.webm](https://github.com/user-attachments/assets/5566e7cd-89e5-4fbe-a895-b3e296c04338)
+
 
 ### 5️⃣ Verify TF Tree
 ```bash
