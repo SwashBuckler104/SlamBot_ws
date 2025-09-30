@@ -80,13 +80,13 @@ map → odom → base_link → wheels
 ---
 
 ## 📦 Dependencies  
-- ROS 2 Humble / Iron (recommended)  
-- Ignition Gazebo (Fortress / Garden)  
+- ROS 2 Humble 
+- Ignition Gazebo  
 - Required Packages:  
   - `ros_gz_sim`  
   - `ros_gz_bridge`  
   - `nav2_bringup`  
   - `robot_state_publisher`  
   - `tf2_ros`  
-  - `slam_toolbox` (if using mapping)
+  - `slam_toolbox` 
 
