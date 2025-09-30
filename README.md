@@ -43,7 +43,7 @@ source install/setup.bash
 ros2 launch slambot_description display.launch.py
 ```
 
-![SlamBot_Gazebo](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+![SlamBot_Rviz](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
 
 ### 3️⃣ Launch Gazebo with Robot
 ```bash
@@ -55,7 +55,17 @@ ros2 launch slambot_gazebo gazebo.launch.py
 ### 4️⃣ Run Navigation with Static TF
 ```bash
 ros2 launch slambot_navigation navigation.launch.py
+# for storing logs
+ros2 launch slambot_navigation navigation.launch.py >  navlog.log 2>&1
+
+# Once Rviz is launched in local/glocal_costmap use follow the below Steps:
+  # - First use 2D Postion Estimate for Initial position set
+  # - Use 2D Goal Estimate for point to point navigation
+
 ```
+![2D_Pos_Change](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
+
+![2D_Goal](https://raw.githubusercontent.com/<username>/<repo>/images/gazebo.png)
 
 ### 5️⃣ Verify TF Tree
 ```bash
@@ -101,4 +111,6 @@ ros2 lifecycle set /controller_server activate
 ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {frame_id: 'map'}, pose: {position: {x: 0, y: 0, z: 0}, orientation: {w:1}}}}"
 ros2 topic echo /navigate_to_pose/_action/feedback
 
+# rqt graph
+ros2 run rqt_graph rqt_graph
 ```
